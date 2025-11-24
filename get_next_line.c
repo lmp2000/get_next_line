@@ -6,7 +6,7 @@
 /*   By: lude-jes <lude-jes@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:34:57 by lude-jes          #+#    #+#             */
-/*   Updated: 2025/11/23 23:25:26 by lude-jes         ###   ########.fr       */
+/*   Updated: 2025/11/24 17:28:39 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,54 @@ char	*read_to_stock(int fd, char *stock)
 
 char	*take_line(char *stock)
 {
+	char	*line;
+	size_t	i;
+	size_t	len;
 	
+	i = 0;
+	len = 0;
+	if (!stock[len])
+		return (NULL);
+	while (stock[len] != '\n' && stock[len] != '\0')
+		len++;
+	if (stock[len] == '\n')
+		len++;
+	line = malloc(len + 1);
+	if (!line)
+		return (NULL);
+	while (i < len)
+	{
+		line[i] = stock[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
 }
 
 char	*update_stock(char *stock)
 {
-	
+	char	*updated_stock;
+	size_t	i;
+	size_t	j;
+
+	if (!stock)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (stock[i] != '\n' && stock[i] != '\0')
+		i++;
+	if (stock[i] == '\n')
+		i++;
+	if (!stock[i])
+		return (free(stock), NULL);
+	updated_stock = malloc(ft_strlen(stock) - i + 1);
+	if (!updated_stock)
+		return (free(stock), NULL);
+	while (stock[i])
+		updated_stock[j++] = stock[i++];
+	updated_stock[j] = '\0';
+	free(stock);
+	return (updated_stock);
 }
 
 char	*get_next_line(int fd)
@@ -61,6 +103,12 @@ char	*get_next_line(int fd)
 	if (!stock)
 		return (NULL);
 	line = take_line(stock);
+	if (!line)
+	{
+		free(stock);
+		stock = NULL;
+		return (NULL);
+	}
 	stock = update_stock(stock);
 	return (line);
 }
