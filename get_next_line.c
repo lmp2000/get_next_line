@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lude-jes <lude-jes@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: lude-jes <lude-jes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:34:57 by lude-jes          #+#    #+#             */
-/*   Updated: 2025/11/24 17:28:39 by lude-jes         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:56:25 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_to_stock(int fd, char *stock)
 	char	*buff;
 	char	*temp;
 	size_t	bytes_read;
-	
+
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
@@ -34,7 +34,7 @@ char	*read_to_stock(int fd, char *stock)
 		free(stock);
 		stock = temp;
 		if (ft_strchr(stock, '\n'))
-			break;
+			break ;
 	}
 	free (buff);
 	return (stock);
@@ -45,7 +45,7 @@ char	*take_line(char *stock)
 	char	*line;
 	size_t	i;
 	size_t	len;
-	
+
 	i = 0;
 	len = 0;
 	if (!stock[len])
