@@ -6,7 +6,7 @@
 /*   By: lude-jes <lude-jes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 13:34:57 by lude-jes          #+#    #+#             */
-/*   Updated: 2025/11/25 15:56:25 by lude-jes         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:08:12 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*read_to_stock(int fd, char *stock)
 {
 	char	*buff;
 	char	*temp;
-	size_t	bytes_read;
+	ssize_t	bytes_read;
 
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
